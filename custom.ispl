@@ -1,0 +1,91 @@
+-- MCMAS Input File In ISPL Syntax
+-- Dummy Enviroment
+-- Two Agents
+
+
+-- Environment
+Agent Environment
+  Vars:
+    state : {none};
+  end Vars
+  Actions = {none};
+  Protocol:
+    state=none: {none};
+  end Protocol
+  Evolution:
+    state=none if (Action=none);
+  end Evolution
+end Agent
+
+
+-- Player1
+Agent Player1
+  Vars:
+    x : boolean;
+    y : boolean;  
+  end Vars
+  Actions = {nothing};
+  Protocol: 
+    x=true and y=true : {nothing};
+    x=true and y=false : {nothing};
+    x=false and y=true : {nothing};
+    x=false and y=false : {nothing};
+  end Protocol
+  Evolution: 
+    (x=true and y=true) if (Player1.Action=nothing)
+    (x=true and y=false) if (Player1.Action=nothing)
+    (x=false and y=true) if (Player1.Action=nothing)
+    (x=false and y=false) if (Player1.Action=nothing)
+  end Evolution
+end Agent
+
+
+-- Player2
+Agent Player2
+  Vars:
+    z : boolean;  
+  end Vars
+  Actions = {nothing};
+  Protocol: 
+    z=true : {nothing};
+    z=false : {nothing};
+  end Protocol
+  Evolution: 
+    z=true if (Player2.Action=nothing)
+  	z=false if (Player2.Action=nothing)
+  end Evolution
+end Agent
+
+
+-- Evaluation
+Evaluation
+end Evaluation
+
+
+-- Initial States
+InitStates
+  ( (Player1.x=true) or (Player1.x=false) ) and
+  ( (Player1.y=true) or (Player1.y=false) ) and
+  ( (Player2.z=true) or (Player2.z=false) );
+end InitStates
+
+
+-- Groups(can be omitted)
+Groups
+  g1 = {Player1,Player2};
+end Groups
+
+
+-- Formulae
+Formulae
+  <<strategy_p1>> <<strategy_p2>> (Player1, strategy_p1) (Player2, strategy_p2) F G (Player1.x and Player1.y) and X U Player2.z; -- LTL SAT
+
+  <<strategy_p1>> [[strategy_p2]] (Player1, strategy_p1) (Player2, strategy_p2) F G (Player1.x and Player1.y); -- CTL SYN, here can we seperate?
+  <<strategy_p2>> [[strategy_p1]] (Player1, strategy_p1) (Player2, strategy_p2) X U Player2.z; -- CTL SYN
+
+  <<strategy_p1>> [[strategy_p2]] (Player1, strategy_p1) (Player2, strategy_p2) !(X U Player2.z) and <<strategy_p2>> [[strategy_p1]] (Player1, strategy_p1) (Player2, strategy_p2) !(F G (Player1.x and Player1.y)); -- CTL SYN， can directly use and here?
+
+  <<strategy_p1>> <<strategyE_p2>> [[strategyA_p2]] (Player1, strategy_p1) (Player2, strategyE_p2) F G (Player1.x and Player1.y) and (Player2, strategyA_p2) !(X U Player2.z); -- CTL* SYN
+  <<strategy_p2>> <<strategyE_p1>> [[strategyA_p1]] (Player2, strategy_p2) (Player1, strategyE_p1) X U Player2.z and (Player1, strategyA_p1) !(F G (Player1.x and Player1.y));
+end Formulae
+

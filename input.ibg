@@ -1,0 +1,7 @@
+### User Input File ###
+
+Player1: x;y
+Player2: z
+Goal1: F G (y and z)
+Goal2: G F x
+Explore: ALL; WHICH

@@ -1,0 +1,84 @@
+-- Input iBG file
+-- Player1: x, y
+-- Player2: z
+-- Goal1: F G (y and z)
+-- Goal2: G F x
+
+
+Agent Environment
+  Obsvars:
+    dummy : boolean;
+  end Obsvars
+  Actions = {none};
+  Protocol:
+    Other : {none};
+  end Protocol
+  Evolution:
+    dummy = true if Action=none;
+  end Evolution
+end Agent
+
+
+Agent Player1
+  Vars:
+    x : boolean;
+    y : boolean;
+  end Vars
+  Actions = {ac00, ac01, ac10, ac11};
+  Protocol:
+    Other : {ac00, ac01, ac10, ac11};
+  end Protocol
+  Evolution:
+    (x = false) and (y = false) if Action=ac00;
+    (x = false) and (y = true) if Action=ac01;
+    (x = true) and (y = false) if Action=ac10;
+    (x = true) and (y = true) if Action=ac11;
+  end Evolution
+end Agent
+
+
+Agent Player2
+  Vars:
+    z : boolean;
+  end Vars
+  Actions = {ac0, ac1};
+  Protocol:
+    Other : {ac0, ac1};
+  end Protocol
+  Evolution:
+    (z = false) if Action=ac0;
+    (z = true) if Action=ac1;
+  end Evolution
+end Agent
+
+
+Evaluation
+  x if Player1.x = true;
+  y if Player1.y = true;
+  z if Player2.z = true;
+end Evaluation
+
+
+InitStates
+  (Environment.dummy = true) and
+  ((Player1.x = true) or (Player1.x = false)) and
+  ((Player1.y = true) or (Player1.y = false)) and
+  ((Player2.z = true) or (Player2.z = false));
+end InitStates
+
+
+Formulae
+  <<strategy_env>> (Environment,strategy_env) (
+    -- LTL SAT
+    ( <<strategy_p1>> (Player1, strategy_p1) <<strategy_p2>> (Player2, strategy_p2) ( (F G (y and z)) and (G F x) ) ) or
+    -- CTL SYN
+    ( ( <<strategy_p1>> (Player1, strategy_p1) [[strategy_p2]] (Player2, strategy_p2) (F G (y and z)) ) or
+      ( <<strategy_p2>> (Player2, strategy_p2) [[strategy_p1]] (Player1, strategy_p1) (G F x) ) ) or
+    -- CTL SYN
+    ( ( <<strategy_p1>> (Player1, strategy_p1) [[strategy_p2]] (Player2, strategy_p2) (!(G F x) ) ) and
+      ( <<strategy_p2>> (Player2, strategy_p2) [[strategy_p1]] (Player1, strategy_p1) (!(G F x) ) ) ) or
+    -- CTL* SYN
+    ( ( <<strategy_p1>> (Player1, strategy_p1) ( [[strategy_p2]] (Player2, strategy_p2) (!(G F x) ) and <<strategy_p2>> (Player2, strategy_p2) (F G (y and z)) ) ) or
+      ( <<strategy_p2>> (Player2, strategy_p2) ( [[strategy_p1]] (Player1, strategy_p1) (!(F G (y and z)) ) and <<strategy_p1>> (Player1, strategy_p1) (G F x) ) ) )
+  );
+end Formulae
