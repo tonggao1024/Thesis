@@ -145,6 +145,11 @@ for line in content:
 		goal1 = line.replace("Goal1:", "").lstrip()
 	elif "Goal2" in line:
 		goal2 = line.replace("Goal2:", "").lstrip()
+print var1
+print var2
+print goal1
+print goal2
+
 
 # Translate to .ispl file
 fo = open("input.ispl", "w")
@@ -155,8 +160,22 @@ createPlayer(fo,var2,"2")
 createEvaluation(fo,var1,var2)
 createInitStates(fo,var1,var2)
 createFormulae(fo,goal1,goal2)
+fo.close()
 
 # Call mcmas
-os.chdir("../MCMAS-SL/MCMAS-SL-Mac")
-#os.system("./mcmas examples/iBG/input.ispl")
-os.system("./mcmas ../../Thesis/input.ispl")
+os.chdir("../../")
+#os.system("./mcmas examples/iBG/input.ispl ")
+output = os.popen("./mcmas examples/iBG/input.ispl").read()
+
+# Parse output
+print output
+print "-------------------------------"
+
+if "is TRUE in the model" in output:
+	print "The game has a Nash Equilibrium"
+elif "is FALSE in the model" in output:
+	print "The game has a Nash Equilibrium"
+else:
+	print "Error exists, please check your input"
+
+print "-------------------------------"
