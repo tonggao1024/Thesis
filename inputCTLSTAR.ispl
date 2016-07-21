@@ -1,0 +1,71 @@
+-- Input iBG file
+-- Player1: x
+-- Player2: y
+-- Goal1: x and y
+-- Goal2: !x and !y
+
+
+Agent Environment
+  Obsvars:
+    dummy : boolean;
+  end Obsvars
+  Actions = {none};
+  Protocol:
+    Other : {none};
+  end Protocol
+  Evolution:
+    dummy = true if Action=none;
+  end Evolution
+end Agent
+
+
+Agent Player1
+  Vars:
+    x : boolean;
+  end Vars
+  Actions = {ac0, ac1};
+  Protocol:
+    Other : {ac0, ac1};
+  end Protocol
+  Evolution:
+    (x = false) if Action=ac0;
+    (x = true) if Action=ac1;
+  end Evolution
+end Agent
+
+
+Agent Player2
+  Vars:
+    y : boolean;
+  end Vars
+  Actions = {ac0, ac1};
+  Protocol:
+    Other : {ac0, ac1};
+  end Protocol
+  Evolution:
+    (y = false) if Action=ac0;
+    (y = true) if Action=ac1;
+  end Evolution
+end Agent
+
+
+Evaluation
+  x if Player1.x = true;
+  y if Player2.y = true;
+end Evaluation
+
+
+InitStates
+  (Environment.dummy = true) and
+  ((Player1.x = true) or (Player1.x = false)) and
+  ((Player2.y = true) or (Player2.y = false));
+end InitStates
+
+
+Formulae
+  <<strategy_env>> (Environment,strategy_env) (
+    -- CTL* SYN
+    ( ( <<strategy_p1>> (Player1, strategy_p1) ( [[strategy_p2]] (Player2, strategy_p2) (!(!x and !y) ) and <<strategy_p2>> (Player2, strategy_p2) (x and y) ) ) or
+      ( <<strategy_p2>> (Player2, strategy_p2) ( [[strategy_p1]] (Player1, strategy_p1) (!(x and y) ) and <<strategy_p1>> (Player1, strategy_p1) (!x and !y) ) ) )
+  );
+end Formulae

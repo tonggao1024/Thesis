@@ -1,0 +1,75 @@
+-- Input iBG file 
+-- Phi 1: x, y
+-- Phi 2 : z
+-- gamma 1 : F G (y and z)
+-- gamma 2 : G F x
+
+Agent Environment
+  Obsvars:
+    dummy : boolean;
+  end Obsvars
+  Actions = {none};
+  Protocol:
+    Other : {none};
+  end Protocol
+  Evolution:
+    dummy = true if Action=none;
+  end Evolution
+end Agent
+
+Agent Player1
+Vars:
+x : boolean;
+y : boolean;
+end Vars
+Actions = {ac11,ac10,ac01,ac00};
+Protocol:
+Other : {ac11,ac10,ac01,ac00};
+end Protocol
+Evolution:
+(x=true) and (y=true) if Action=ac11;
+(x=true) and (y=false) if Action=ac10;
+(x=false) and (y=true) if Action=ac01;
+(x=false) and (y=false) if Action=ac00;
+end Evolution
+end Agent
+
+Agent Player2
+Vars:
+z : boolean;
+end Vars
+Actions = {ac1,ac0};
+Protocol:
+Other : {ac1,ac0};
+end Protocol
+Evolution:
+(z=true) if Action=ac1;
+(z=false) if Action=ac0;
+end Evolution
+end Agent
+
+Evaluation
+  x if Player1.x = true;
+  y if Player1.y = true;
+  z if Player2.z = true;  
+end Evaluation
+
+InitStates
+  (Environment.dummy = true) and
+  ((Player1.x = true) or (Player1.x = false)) and
+  ((Player1.y = true) or (Player1.y = false)) and
+  ((Player2.z = true) or (Player2.z = false));  
+end InitStates
+
+-- Strategy Logic (SL) specification for Non-emptiness of Nash equilibria in a two-player iterated Boolean game
+-- However, this MCMAS implementation of SL support only "memoryless" strategies (called here imperfect recall), not the general case 
+Formulae
+  <<stE>> (Environment,stE) (
+  -- LTL SAT
+  ( <<st1>> (Player1, st1) <<st2>> (Player2, st2) ( (F G (y and z)) and (G F x) ) ) or
+  -- LTL SYN
+  ( ( <<st1>> (Player1, st1) [[st2]] (Player2, st2) ( ! (G F x) ) ) and ( <<st2>> (Player2, st2) [[st1]] (Player1, st1) ( ! (F G (y and z) ) ) ) ) or 
+  -- CTL* SYN
+  ( ( <<st1>> (Player1, st1) ( [[st2]] (Player2, st2) ( ! (G F x) ) and <<st2>> (Player2, st2) ( F G (y and z) ) ) ) or ( <<st2>> (Player2, st2) ( [[st1]] (Player1, st1) ( ! (F G (y and z)) ) and <<st1>> (Player1, st1) ( G F x ) ) ) )
+  );
+end Formulae
