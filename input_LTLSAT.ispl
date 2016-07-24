@@ -67,29 +67,4 @@ Formulae
   <<strategy_env>> (Environment,strategy_env) (
     ( <<strategy_p1>> (Player1, strategy_p1) <<strategy_p2>> (Player2, strategy_p2) ( (G F(x and y) ) and (G F(!x and !y)) ) )
   );
-
-  -- LTL SYN
-  <<strategy_env>> (Environment,strategy_env) (
-    ( <<strategy_p1>> (Player1, strategy_p1) [[strategy_p2]] (Player2, strategy_p2) (G F(x and y) ) )
-  );
-  <<strategy_env>> (Environment,strategy_env) (
-      ( <<strategy_p2>> (Player2, strategy_p2) [[strategy_p1]] (Player1, strategy_p1) (G F(!x and !y)) )
-  );
-
-  -- LTL SYN
-  <<strategy_env>> (Environment,strategy_env) (
-    ( <<strategy_p1>> (Player1, strategy_p1) [[strategy_p2]] (Player2, strategy_p2) (!(G F(!x and !y)) ) )
-  );
-  <<strategy_env>> (Environment,strategy_env) (
-      ( <<strategy_p2>> (Player2, strategy_p2) [[strategy_p1]] (Player1, strategy_p1) (!(G F(x and y) ) ) )
-  );
-
-  -- CTL* SYN
-  <<strategy_env>> (Environment,strategy_env) (
-    ( <<strategy_p1>> (Player1, strategy_p1) ( [[strategy_p2]] (Player2, strategy_p2) (!(G F(!x and !y)) ) and <<strategy_p2>> (Player2, strategy_p2) (G F(x and y) ) ) )
-  );
-  <<strategy_env>> (Environment,strategy_env) (
-      ( <<strategy_p2>> (Player2, strategy_p2) ( [[strategy_p1]] (Player1, strategy_p1) (!(G F(x and y) ) ) and <<strategy_p1>> (Player1, strategy_p1) (G F(!x and !y)) ) )
-  );
-
 end Formulae

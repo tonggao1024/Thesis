@@ -171,11 +171,14 @@ def createFormulae(fo,goal1,goal2):
 	fo.write("  <<strategy_env>> (Environment,strategy_env) (\n")
 
 	fo.write("    -- CTL SYN\n")
-	fo.write("    ( ( <<strategy_p1>> (Player1, strategy_p1) [[strategy_p2]] (Player2, strategy_p2) ")
+	fo.write("    ( <<strategy_p1>> (Player1, strategy_p1) [[strategy_p2]] (Player2, strategy_p2) ")
 	fo.write("(" + goal1 + ") )" )
-	fo.write(" or\n")
+	
+	fo.write("  );\n")
+
+	fo.write("  <<strategy_env>> (Environment,strategy_env) (\n")
 	fo.write("      ( <<strategy_p2>> (Player2, strategy_p2) [[strategy_p1]] (Player1, strategy_p1) ")
-	fo.write("(" + goal2 + ") ) )\n")
+	fo.write("(" + goal2 + ") )\n")
 
 	fo.write("  );\n")
 
@@ -187,7 +190,7 @@ def createFormulae(fo,goal1,goal2):
 	fo.write("(!(" + goal2 + ") ) )" )	
 	fo.write(" and\n")
 	fo.write("      ( <<strategy_p2>> (Player2, strategy_p2) [[strategy_p1]] (Player1, strategy_p1) ")
-	fo.write("(!(" + goal2 + ") ) ) )\n")
+	fo.write("(!(" + goal1 + ") ) ) )\n")
 
 	fo.write("  );\n")
 
@@ -195,15 +198,19 @@ def createFormulae(fo,goal1,goal2):
 	fo.write("  <<strategy_env>> (Environment,strategy_env) (\n")
 
 	fo.write("    -- CTL* SYN\n")
-	fo.write("    ( ( <<strategy_p1>> (Player1, strategy_p1) ")
+	fo.write("    ( <<strategy_p1>> (Player1, strategy_p1) ")
 	fo.write("( [[strategy_p2]] (Player2, strategy_p2) " +  "(!(" + goal2 + ") )")
 	fo.write(" and ")
 	fo.write("<<strategy_p2>> (Player2, strategy_p2) " + "(" + goal1 + ") ) )")
-	fo.write(" or\n")
+
+	fo.write("  );\n")
+
+	fo.write("  <<strategy_env>> (Environment,strategy_env) (\n")
+
 	fo.write("      ( <<strategy_p2>> (Player2, strategy_p2) ")
 	fo.write("( [[strategy_p1]] (Player1, strategy_p1) " +  "(!(" + goal1 + ") )")
 	fo.write(" and ")
-	fo.write("<<strategy_p1>> (Player1, strategy_p1) " + "(" + goal2 + ") ) ) )\n")
+	fo.write("<<strategy_p1>> (Player1, strategy_p1) " + "(" + goal2 + ") ) )\n")
 
 	fo.write("  );\n")
 

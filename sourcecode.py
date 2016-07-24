@@ -4,6 +4,7 @@ import io
 import os
 import subprocess
 import time
+import re
 
 # Helper function
 def writeComment(fo,var1,var2,goal1,goal2):
@@ -85,112 +86,134 @@ def createInitStates(fo,var1,var2):
 	fo.write("end InitStates\n")
 	fo.write("\n"*2)
 
-def createFormulaeLTLSAT(fo,goal1,goal2):
+def createFormulae_LTLSAT(fo,goal1,goal2):
 	fo.write("Formulae\n")
-	# Environment
-	fo.write("  <<strategy_env>> (Environment,strategy_env) (\n")
 
-	# LTL SAT
-	fo.write("    -- LTL SAT\n")
+	fo.write("  -- LTL SAT\n")
+	fo.write("  <<strategy_env>> (Environment,strategy_env) (\n")
 	fo.write("    ( <<strategy_p1>> (Player1, strategy_p1) <<strategy_p2>> (Player2, strategy_p2) ")
 	fo.write("( (" + goal1 + ") and (" + goal2 + ") ) )\n")
-
 	fo.write("  );\n")
+
 	fo.write("end Formulae\n")
 
-def createFormulaeCTLSYN1(fo,goal1,goal2):
+def createFormulae_LTLSYN_OR1(fo,goal1,goal2):
 	fo.write("Formulae\n")
-	# Environment
-	fo.write("  <<strategy_env>> (Environment,strategy_env) (\n")
 
-	# CTL SYN1
-	fo.write("    -- CTL SYN\n")
-	fo.write("    ( ( <<strategy_p1>> (Player1, strategy_p1) [[strategy_p2]] (Player2, strategy_p2) ")
-	fo.write("(" + goal1 + ") )" )
-	fo.write(" or\n")
+	fo.write("  -- LTL SYN (OR1)\n")
+	fo.write("  <<strategy_env>> (Environment,strategy_env) (\n")
+	fo.write("    ( <<strategy_p1>> (Player1, strategy_p1) [[strategy_p2]] (Player2, strategy_p2) ")
+	fo.write("(" + goal1 + ") )\n" )
+	fo.write("  );\n")
+
+	fo.write("end Formulae\n")
+
+def createFormulae_LTLSYN_OR2(fo,goal1,goal2):
+	fo.write("Formulae\n")
+
+	fo.write("  -- LTL SYN (OR2)\n")
+	fo.write("  <<strategy_env>> (Environment,strategy_env) (\n")
 	fo.write("      ( <<strategy_p2>> (Player2, strategy_p2) [[strategy_p1]] (Player1, strategy_p1) ")
-	fo.write("(" + goal2 + ") ) )\n")
-
+	fo.write("(" + goal2 + ") )\n")
 	fo.write("  );\n")
+
 	fo.write("end Formulae\n")
 
-def createFormulaeCTLSYN2(fo,goal1,goal2):
+def createFormulae_LTLSYN_AND(fo,goal1,goal2):
 	fo.write("Formulae\n")
-	# Environment
-	fo.write("  <<strategy_env>> (Environment,strategy_env) (\n")
 
-	# CTL SYN2
-	fo.write("    -- CTL SYN\n")
-	fo.write("    ( ( <<strategy_p1>> (Player1, strategy_p1) [[strategy_p2]] (Player2, strategy_p2) ")
-	fo.write("(!(" + goal2 + ") ) )" )	
-	fo.write(" and\n")
+	fo.write("  -- LTL SYN (AND)\n")
+	fo.write("  <<strategy_env>> (Environment,strategy_env) (\n")
+	fo.write("    ( <<strategy_p1>> (Player1, strategy_p1) [[strategy_p2]] (Player2, strategy_p2) ")
+	fo.write("(!(" + goal2 + ") ) )\n" )	
+	fo.write("  );\n")
+
+	fo.write("  <<strategy_env>> (Environment,strategy_env) (\n")
 	fo.write("      ( <<strategy_p2>> (Player2, strategy_p2) [[strategy_p1]] (Player1, strategy_p1) ")
-	fo.write("(!(" + goal2 + ") ) ) )\n")
-
+	fo.write("(!(" + goal1 + ") ) )\n")
 	fo.write("  );\n")
+
 	fo.write("end Formulae\n")
 
-
-def createFormulaeCTLStarSYN(fo,goal1,goal2):
+def createFormulae_CTLStarSYN_OR1(fo,goal1,goal2):
 	fo.write("Formulae\n")
-	# Environment
-	fo.write("  <<strategy_env>> (Environment,strategy_env) (\n")
 
-	# CTL* SYN
-	fo.write("    -- CTL* SYN\n")
-	fo.write("    ( ( <<strategy_p1>> (Player1, strategy_p1) ")
+	fo.write("  -- CTL* SYN (OR1)\n")
+	fo.write("  <<strategy_env>> (Environment,strategy_env) (\n")
+	fo.write("    ( <<strategy_p1>> (Player1, strategy_p1) ")
 	fo.write("( [[strategy_p2]] (Player2, strategy_p2) " +  "(!(" + goal2 + ") )")
 	fo.write(" and ")
-	fo.write("<<strategy_p2>> (Player2, strategy_p2) " + "(" + goal1 + ") ) )")
-	fo.write(" or\n")
+	fo.write("<<strategy_p2>> (Player2, strategy_p2) " + "(" + goal1 + ") ) )\n")
+	fo.write("  );\n")
+
+	fo.write("end Formulae\n")
+
+def createFormulae_CTLStarSYN_OR2(fo,goal1,goal2):
+	fo.write("Formulae\n")
+
+	fo.write("  -- CTL* SYN (OR2)\n")
+	fo.write("  <<strategy_env>> (Environment,strategy_env) (\n")
 	fo.write("      ( <<strategy_p2>> (Player2, strategy_p2) ")
 	fo.write("( [[strategy_p1]] (Player1, strategy_p1) " +  "(!(" + goal1 + ") )")
 	fo.write(" and ")
-	fo.write("<<strategy_p1>> (Player1, strategy_p1) " + "(" + goal2 + ") ) ) )\n")
-
+	fo.write("<<strategy_p1>> (Player1, strategy_p1) " + "(" + goal2 + ") ) )\n")
 	fo.write("  );\n")
-	fo.write("end Formulae\n")
 
+	fo.write("end Formulae\n")
 
 def createFormulae(fo,goal1,goal2):
 	fo.write("Formulae\n")
-	# Environment
-	fo.write("  <<strategy_env>> (Environment,strategy_env) (\n")
 
 	# LTL SAT
-	fo.write("    -- LTL SAT\n")
+	fo.write("  -- LTL SAT\n")
+	fo.write("  <<strategy_env>> (Environment,strategy_env) (\n")
 	fo.write("    ( <<strategy_p1>> (Player1, strategy_p1) <<strategy_p2>> (Player2, strategy_p2) ")
-	fo.write("( (" + goal1 + ") and (" + goal2 + ") ) ) or\n")
+	fo.write("( (" + goal1 + ") and (" + goal2 + ") ) )\n")
+	fo.write("  );\n")
+	fo.write("\n")
 
-	# CTL SYN1
-	fo.write("    -- CTL SYN\n")
-	fo.write("    ( ( <<strategy_p1>> (Player1, strategy_p1) [[strategy_p2]] (Player2, strategy_p2) ")
-	fo.write("(" + goal1 + ") )" )
-	fo.write(" or\n")
-	fo.write("      ( <<strategy_p2>> (Player2, strategy_p2) [[strategy_p1]] (Player1, strategy_p1) ")
-	fo.write("(" + goal2 + ") ) ) or\n")
+	# LTL SYN1
+	fo.write("  -- LTL SYN\n")
+	fo.write("  <<strategy_env>> (Environment,strategy_env) (\n")
+	fo.write("    ( <<strategy_p1>> (Player1, strategy_p1) [[strategy_p2]] (Player2, strategy_p2) ")
+	fo.write("(" + goal1 + ") )\n" )
+	fo.write("  );\n")
 
-	# CTL SYN2
-	fo.write("    -- CTL SYN\n")
-	fo.write("    ( ( <<strategy_p1>> (Player1, strategy_p1) [[strategy_p2]] (Player2, strategy_p2) ")
-	fo.write("(!(" + goal2 + ") ) )" )	
-	fo.write(" and\n")
+	fo.write("  <<strategy_env>> (Environment,strategy_env) (\n")
 	fo.write("      ( <<strategy_p2>> (Player2, strategy_p2) [[strategy_p1]] (Player1, strategy_p1) ")
-	fo.write("(!(" + goal2 + ") ) ) ) or\n")	
+	fo.write("(" + goal2 + ") )\n")
+	fo.write("  );\n")
+	fo.write("\n")
+
+	# LTL SYN2
+	fo.write("  -- LTL SYN\n")
+	fo.write("  <<strategy_env>> (Environment,strategy_env) (\n")
+	fo.write("    ( <<strategy_p1>> (Player1, strategy_p1) [[strategy_p2]] (Player2, strategy_p2) ")
+	fo.write("(!(" + goal2 + ") ) )\n" )	
+	fo.write("  );\n")
+
+	fo.write("  <<strategy_env>> (Environment,strategy_env) (\n")
+	fo.write("      ( <<strategy_p2>> (Player2, strategy_p2) [[strategy_p1]] (Player1, strategy_p1) ")
+	fo.write("(!(" + goal1 + ") ) )\n")
+	fo.write("  );\n")
+	fo.write("\n")
 
 	# CTL* SYN
-	fo.write("    -- CTL* SYN\n")
-	fo.write("    ( ( <<strategy_p1>> (Player1, strategy_p1) ")
+	fo.write("  -- CTL* SYN\n")
+	fo.write("  <<strategy_env>> (Environment,strategy_env) (\n")
+	fo.write("    ( <<strategy_p1>> (Player1, strategy_p1) ")
 	fo.write("( [[strategy_p2]] (Player2, strategy_p2) " +  "(!(" + goal2 + ") )")
 	fo.write(" and ")
-	fo.write("<<strategy_p2>> (Player2, strategy_p2) " + "(" + goal1 + ") ) )")
-	fo.write(" or\n")
+	fo.write("<<strategy_p2>> (Player2, strategy_p2) " + "(" + goal1 + ") ) )\n")
+	fo.write("  );\n")
+
+	fo.write("  <<strategy_env>> (Environment,strategy_env) (\n")
 	fo.write("      ( <<strategy_p2>> (Player2, strategy_p2) ")
 	fo.write("( [[strategy_p1]] (Player1, strategy_p1) " +  "(!(" + goal1 + ") )")
 	fo.write(" and ")
-	fo.write("<<strategy_p1>> (Player1, strategy_p1) " + "(" + goal2 + ") ) ) )\n")
-
+	fo.write("<<strategy_p1>> (Player1, strategy_p1) " + "(" + goal2 + ") ) )\n")
 	fo.write("  );\n")
+	fo.write("\n")
 
 	fo.write("end Formulae\n")
 
@@ -206,39 +229,94 @@ def runMCMAS(filename):
 	# Set flag
 	done = False
 
-	# Parse output
+	# track excution time
 	print output
 	print("----------------------------------------------")
 	print("%s:finishing MCMAS..." % time.time())
 	print("----------------------------------------------")
-	print("Execution Time:%s seconds " % (time.time() - start_time))
+	end_time = time.time() - start_time
+	print("Execution Time:%s seconds " % end_time)
 	print("----------------------------------------------")
 
-	if "is TRUE in the model" in output:
-		# raise flag
-		done = True
-		# print result
-		print "The game has a Nash Equilibrium "
-		# parse input file
-		if filename == "inputLTL.ispl":
-			print "LTL SAT is satisfied"
-		elif filename == "inputCTL1.ispl":
-			print "CTL SYN1 is satisfied"
-		elif filename == "inputCTL2.ispl":
-			print "CTL SYN2 is satisfied"
-		elif filename == "inputCTLSTAR.ispl":
-			print "CTL* SYN is satisfied"
-	elif "is FALSE in the model" in output:
-		if filename == "inputCTLSTAR.ispl" or filename == "input.ispl":
+	f = open('examples/iBG/excutiontime.ibg','a+')
+	f.write("Execution Time:%s seconds\n" % end_time)
+	f.close()
+
+	#identidy filename
+	if filename == "input.ispl":
+		# Parse output
+		result1 = re.search("Formula number 1(.*)model", output)
+		result2 = re.search("Formula number 2(.*)model", output)
+		result3 = re.search("Formula number 3(.*)model", output)
+		result4 = re.search("Formula number 4(.*)model", output)
+		result5 = re.search("Formula number 5(.*)model", output)
+		result6 = re.search("Formula number 6(.*)model", output)
+		result7 = re.search("Formula number 7(.*)model", output)
+
+		if (("is TRUE" in result1.group(1)) or ("is TRUE" in result2.group(1)) or 
+		   ("is TRUE" in result3.group(1)) or ("is TRUE" in result6.group(1)) or 
+		   ("is TRUE" in result7.group(1))):
+			# raise flag
+			done = True
+			# print result
+			print "The game has a Nash Equilibrium "
+		elif ("is TRUE" in result4.group(1)) and ("is TRUE" in result5.group(1)):
+			# raise flag
+			done = True
+			# print result
+			print "The game has a Nash Equilibrium "
+		else:
 			print "The game doesn't have a Nash Equilibrium "
-	else:
-		print "Error exists, please check your program"
+	elif filename == "input_LTLSAT.ispl":
+		if "is TRUE in the model" in output:
+			# raise flag
+			done = True
+			# print result
+			print "The game has a Nash Equilibrium "
+			print "LTL SAT is satisfied"
+	elif filename == "input_LTLSYN_OR1.ispl":
+		if "is TRUE in the model" in output:
+			# raise flag
+			done = True
+			# print result
+			print "The game has a Nash Equilibrium "
+			print "LTL SYN(OR1) is satisfied"
+	elif filename == "input_LTLSYN_OR2.ispl":
+		if "is TRUE in the model" in output:
+			# raise flag
+			done = True
+			# print result
+			print "The game has a Nash Equilibrium "
+			print "LTL SYN(OR2) is satisfied"
+	elif filename == "input_LTLSYN_AND.ispl":
+		if "is FALSE in the model" not in output:
+			# raise flag
+			done = True
+			# print result
+			print "The game has a Nash Equilibrium "
+			print "LTL SYN(AND) is satisfied"
+	elif filename == "input_CTLSTAR_OR1.ispl":
+		if "is TRUE in the model" in output:
+			# raise flag
+			done = True
+			# print result
+			print "The game has a Nash Equilibrium "
+			print "CTL* SYN(OR1) is satisfied"
+	elif filename == "input_CTLSTAR_OR2.ispl":
+		if "is TRUE in the model" in output:
+			# raise flag
+			done = True
+			# print result
+			print "The game has a Nash Equilibrium "
+			print "CTL* SYN(OR2) is satisfied"
+		else:
+			print "The game doesn't have a Nash Equilibrium "
 
 	print("----------------------------------------------")
 
 	os.chdir("examples/iBG/") # change directory back
 
-	return done
+	return done 
 
 def translateAll(var1,var2,goal1,goal2):
 	print(str(time.time()) + ":generating .ispl file...")
@@ -263,7 +341,7 @@ def translateEach(var1,var2,goal1,goal2):
 	# Translate to 4 .ispl file and run one by one
 
 	### LTL SAT
-	filename = "inputLTL.ispl"
+	filename = "input_LTLSAT.ispl"
 	fo = open(filename, "w")
 	writeComment(fo,var1,var2,goal1,goal2)
 	createEnvironment(fo)
@@ -271,15 +349,15 @@ def translateEach(var1,var2,goal1,goal2):
 	createPlayer(fo,var2,"2")
 	createEvaluation(fo,var1,var2)
 	createInitStates(fo,var1,var2)
-	createFormulaeLTLSAT(fo,goal1,goal2)
+	createFormulae_LTLSAT(fo,goal1,goal2)
 	fo.close()
 
 	# Run MCMAS
 	done = runMCMAS(filename)
 	if done: return
 
-	### CTL SYN1
-	filename = "inputCTL1.ispl"
+	### LTL SYN (OR1)
+	filename = "input_LTLSYN_OR1.ispl"
 	fo = open(filename, "w")
 	writeComment(fo,var1,var2,goal1,goal2)
 	createEnvironment(fo)
@@ -287,15 +365,15 @@ def translateEach(var1,var2,goal1,goal2):
 	createPlayer(fo,var2,"2")
 	createEvaluation(fo,var1,var2)
 	createInitStates(fo,var1,var2)
-	createFormulaeCTLSYN1(fo,goal1,goal2)
+	createFormulae_LTLSYN_OR1(fo,goal1,goal2)
 	fo.close()
 
 	# Run MCMAS
 	done = runMCMAS(filename)
 	if done: return
 
-	### CTL SYN2
-	filename = "inputCTL2.ispl"
+	### LTL SYN (OR2)
+	filename = "input_LTLSYN_OR2.ispl"
 	fo = open(filename, "w")
 	writeComment(fo,var1,var2,goal1,goal2)
 	createEnvironment(fo)
@@ -303,15 +381,15 @@ def translateEach(var1,var2,goal1,goal2):
 	createPlayer(fo,var2,"2")
 	createEvaluation(fo,var1,var2)
 	createInitStates(fo,var1,var2)
-	createFormulaeCTLSYN2(fo,goal1,goal2)
+	createFormulae_LTLSYN_OR2(fo,goal1,goal2)
 	fo.close()
 
 	# Run MCMAS
 	done = runMCMAS(filename)
 	if done: return
 
-	# CTL* SYN
-	filename = "inputCTLSTAR.ispl"
+	### LTL SYN (AND)
+	filename = "input_LTLSYN_AND.ispl"
 	fo = open(filename, "w")
 	writeComment(fo,var1,var2,goal1,goal2)
 	createEnvironment(fo)
@@ -319,7 +397,39 @@ def translateEach(var1,var2,goal1,goal2):
 	createPlayer(fo,var2,"2")
 	createEvaluation(fo,var1,var2)
 	createInitStates(fo,var1,var2)
-	createFormulaeCTLStarSYN(fo,goal1,goal2)
+	createFormulae_LTLSYN_AND(fo,goal1,goal2)
+	fo.close()
+
+	# Run MCMAS
+	done = runMCMAS(filename)
+	if done: return
+
+	# CTL* SYN (OR1)
+	filename = "input_CTLSTAR_OR1.ispl"
+	fo = open(filename, "w")
+	writeComment(fo,var1,var2,goal1,goal2)
+	createEnvironment(fo)
+	createPlayer(fo,var1,"1")
+	createPlayer(fo,var2,"2")
+	createEvaluation(fo,var1,var2)
+	createInitStates(fo,var1,var2)
+	createFormulae_CTLStarSYN_OR1(fo,goal1,goal2)
+	fo.close()
+
+	# Run MCMAS
+	done = runMCMAS(filename)
+	if done: return
+
+	# CTL* SYN (OR2)
+	filename = "input_CTLSTAR_OR2.ispl"
+	fo = open(filename, "w")
+	writeComment(fo,var1,var2,goal1,goal2)
+	createEnvironment(fo)
+	createPlayer(fo,var1,"1")
+	createPlayer(fo,var2,"2")
+	createEvaluation(fo,var1,var2)
+	createInitStates(fo,var1,var2)
+	createFormulae_CTLStarSYN_OR2(fo,goal1,goal2)
 	fo.close()
 
 	# Run MCMAS

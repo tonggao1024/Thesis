@@ -2,6 +2,6 @@
 
 Player1: x
 Player2: y
-Goal1: (x and y)
-Goal2: (!x and !y)
-Explore: ALL
+Goal1: G F(x and y) 
+Goal2: G F(!x and !y)
+Explore: WHICH

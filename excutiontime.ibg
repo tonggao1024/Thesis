@@ -1,0 +1,114 @@
+### Test Case 1 ###
+-- goal1 = "x0"
+-- goal2 = "!y0"
+-- var1 = x0
+-- var2 = y0;y0-y1;y0-y2;...;y0-y10
+-- 1:n setting
+-- # of var incrases linearly
+
+Execution Time:0.00795698165894 seconds
+Execution Time:0.00841403007507 seconds
+Execution Time:0.00973296165466 seconds
+Execution Time:0.0109131336212 seconds
+Execution Time:0.0258572101593 seconds
+Execution Time:0.0915689468384 seconds
+Execution Time:0.430104017258 seconds
+Execution Time:2.02684998512 seconds
+Execution Time:9.63544011116 seconds
+Execution Time:41.960381031 seconds
+Execution Time:181.294997931 seconds
+
+-- goal1 = "x0"
+-- goal2 = "!y0"
+-- var1 = x0
+-- var2 = y0;y0-y1;y0-y3;y0-y7;y0-y15;y0-y31;y0-y63
+-- 1:n setting
+-- # of var incrases exponentialy 
+
+Execution Time:0.00587105751038 seconds
+Execution Time:0.00602293014526 seconds
+Execution Time:0.0100040435791 seconds
+Execution Time:2.02212715149 seconds
+Execution Time:573.063876152 seconds
+
+-- goal1 = "x0"
+-- goal2 = "!y0"
+-- var1 = x0;x0-x1;x0-x2;...
+-- var2 = y0;y0-y1;y0-y2;...
+-- n:n setting
+-- # of var incrases linearly
+
+On Server:
+Execution Time:0.00825595855713 seconds
+Execution Time:0.00700998306274 seconds
+Execution Time:0.00868201255798 seconds
+Execution Time:0.015576839447 seconds
+Execution Time:0.0429811477661 seconds
+Execution Time:0.174622058868 seconds
+Execution Time:0.914613962173 seconds
+Execution Time:4.22465801239 seconds
+Execution Time:20.4943590164 seconds
+Execution Time:86.0131850243 seconds
+Execution Time:382.877927065 seconds
+
+On Mac:
+Execution Time:0.037162065506 seconds
+Execution Time:0.0344660282135 seconds
+Execution Time:0.0431897640228 seconds
+Execution Time:0.0608639717102 seconds
+Execution Time:0.128744125366 seconds
+Execution Time:0.497544050217 seconds
+Execution Time:2.29487395287 seconds
+Execution Time:10.2672178745 seconds
+Execution Time:44.7225511074 seconds
+Execution Time:212.629106998 seconds
+
+Execution Time:0.0459489822388 seconds
+Execution Time:0.0296919345856 seconds
+Execution Time:0.0297288894653 seconds
+Execution Time:0.0352199077606 seconds
+Execution Time:0.0354340076447 seconds
+Execution Time:0.0310249328613 seconds
+Execution Time:0.166058063507 seconds
+Execution Time:0.0324549674988 seconds
+Execution Time:0.0324740409851 seconds
+Execution Time:0.0815770626068 seconds
+Execution Time:0.032860994339 seconds
+Execution Time:0.0317878723145 seconds
+Execution Time:0.031103849411 seconds
+Execution Time:0.102382898331 seconds
+Execution Time:0.0312790870667 seconds
+Execution Time:0.0310981273651 seconds
+Execution Time:0.0316381454468 seconds
+Execution Time:0.0322480201721 seconds
+Execution Time:0.0300049781799 seconds
+Execution Time:0.0322949886322 seconds
+Execution Time:0.0321819782257 seconds
+Execution Time:0.0299558639526 seconds
+Execution Time:0.0305731296539 seconds
+Execution Time:0.0313069820404 seconds
+Execution Time:0.0314290523529 seconds
+Execution Time:0.0301280021667 seconds
+Execution Time:0.129831075668 seconds
+Execution Time:0.0297920703888 seconds
+Execution Time:0.0308790206909 seconds
+Execution Time:0.0295369625092 seconds
+Execution Time:0.03089594841 seconds
+Execution Time:0.0312640666962 seconds
+Execution Time:0.0322377681732 seconds
+Execution Time:0.0305330753326 seconds
+Execution Time:0.0887730121613 seconds
+Execution Time:0.0309619903564 seconds
+Execution Time:0.0368180274963 seconds
+Execution Time:0.0402581691742 seconds
+Execution Time:0.034924030304 seconds
+Execution Time:0.0306150913239 seconds
+Execution Time:0.0346601009369 seconds
+Execution Time:0.0346159934998 seconds
+Execution Time:0.033940076828 seconds
+Execution Time:0.0316560268402 seconds
+Execution Time:0.0339150428772 seconds
+Execution Time:0.0311739444733 seconds
+Execution Time:0.0398252010345 seconds
+Execution Time:0.0343751907349 seconds
+Execution Time:0.0346169471741 seconds
