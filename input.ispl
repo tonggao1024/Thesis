@@ -1,8 +1,8 @@
 -- Input iBG file
 -- Player1: x
 -- Player2: y
--- Goal1: G F(x and y) 
--- Goal2: G F(!x and !y)
+-- Goal1: x 
+-- Goal2: !y
 
 
 Agent Environment
@@ -65,31 +65,31 @@ end InitStates
 Formulae
   -- LTL SAT
   <<strategy_env>> (Environment,strategy_env) (
-    ( <<strategy_p1>> (Player1, strategy_p1) <<strategy_p2>> (Player2, strategy_p2) ( (G F(x and y) ) and (G F(!x and !y)) ) )
+    ( <<strategy_p1>> (Player1, strategy_p1) <<strategy_p2>> (Player2, strategy_p2)  X ( (x ) and (!y) ) )
   );
 
   -- LTL SYN
   <<strategy_env>> (Environment,strategy_env) (
-    ( <<strategy_p1>> (Player1, strategy_p1) [[strategy_p2]] (Player2, strategy_p2) (G F(x and y) ) )
+    ( <<strategy_p1>> (Player1, strategy_p1) [[strategy_p2]] (Player2, strategy_p2)  X (x ) )
   );
   <<strategy_env>> (Environment,strategy_env) (
-      ( <<strategy_p2>> (Player2, strategy_p2) [[strategy_p1]] (Player1, strategy_p1) (G F(!x and !y)) )
+      ( <<strategy_p2>> (Player2, strategy_p2) [[strategy_p1]] (Player1, strategy_p1)  X (!y) )
   );
 
   -- LTL SYN
   <<strategy_env>> (Environment,strategy_env) (
-    ( <<strategy_p1>> (Player1, strategy_p1) [[strategy_p2]] (Player2, strategy_p2) (!(G F(!x and !y)) ) )
+    ( <<strategy_p1>> (Player1, strategy_p1) [[strategy_p2]] (Player2, strategy_p2)  X (!(!y) ) )
   );
   <<strategy_env>> (Environment,strategy_env) (
-      ( <<strategy_p2>> (Player2, strategy_p2) [[strategy_p1]] (Player1, strategy_p1) (!(G F(x and y) ) ) )
+      ( <<strategy_p2>> (Player2, strategy_p2) [[strategy_p1]] (Player1, strategy_p1)  X (!(x ) ) )
   );
 
   -- CTL* SYN
   <<strategy_env>> (Environment,strategy_env) (
-    ( <<strategy_p1>> (Player1, strategy_p1) ( [[strategy_p2]] (Player2, strategy_p2) (!(G F(!x and !y)) ) and <<strategy_p2>> (Player2, strategy_p2) (G F(x and y) ) ) )
+    ( <<strategy_p1>> (Player1, strategy_p1) ( [[strategy_p2]] (Player2, strategy_p2)  X (!(!y) ) and <<strategy_p2>> (Player2, strategy_p2)  X (x ) ) )
   );
   <<strategy_env>> (Environment,strategy_env) (
-      ( <<strategy_p2>> (Player2, strategy_p2) ( [[strategy_p1]] (Player1, strategy_p1) (!(G F(x and y) ) ) and <<strategy_p1>> (Player1, strategy_p1) (G F(!x and !y)) ) )
+      ( <<strategy_p2>> (Player2, strategy_p2) ( [[strategy_p1]] (Player1, strategy_p1)  X (!(x ) ) and <<strategy_p1>> (Player1, strategy_p1)  X (!y) ) )
   );
 
 end Formulae
