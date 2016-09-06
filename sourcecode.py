@@ -217,6 +217,18 @@ def createFormulae(fo,goal1,goal2):
 
 	fo.write("end Formulae\n")
 
+def createFormulaeSL(fo,goal1,goal2):
+	fo.write("Formulae\n")
+
+	fo.write("  <<strategy_env>> (Environment,strategy_env) (\n")
+	fo.write("   <<strategy_p1>> <<strategy_p2>> (Player1, strategy_p1) (Player2, strategy_p2) ")
+	fo.write("( (" + goal1 + ") or [[alt_strategy_p1]] (Player1,alt_strategy_p1)" + " !(" + goal1 +") )")
+	fo.write(" and ")
+	fo.write("( (" + goal2 + ") or [[alt_strategy_p2]] (Player2,alt_strategy_p2)" + " !(" + goal2 +") )")
+	fo.write("  );\n")
+
+	fo.write("end Formulae\n")
+
 def runMCMAS(filename):
 	start_time = time.time()
 	print("%s:running MCMAS..." % start_time)
@@ -332,6 +344,25 @@ def translateAll(var1,var2,goal1,goal2):
 	createEvaluation(fo,var1,var2)
 	createInitStates(fo,var1,var2)
 	createFormulae(fo,goal1,goal2)
+	fo.close()
+
+	# Run MCMAS
+	runMCMAS(filename)
+
+def translateSL(var1,var2,goal1,goal2):
+	print(str(time.time()) + ":generating .ispl file...")
+	print("----------------------------------------------")
+
+	# Translate to .ispl file
+	filename = "input.ispl"
+	fo = open(filename, "w")
+	writeComment(fo,var1,var2,goal1,goal2)
+	createEnvironment(fo)
+	createPlayer(fo,var1,"1")
+	createPlayer(fo,var2,"2")
+	createEvaluation(fo,var1,var2)
+	createInitStates(fo,var1,var2)
+	createFormulaeSL(fo,goal1,goal2)
 	fo.close()
 
 	# Run MCMAS

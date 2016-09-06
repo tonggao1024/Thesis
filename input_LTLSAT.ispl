@@ -1,8 +1,8 @@
 -- Input iBG file
--- Player1: x
--- Player2: y
--- Goal1: x 
--- Goal2: !y
+-- Player1: x0, x1, x2, x3, x4, x5, x6
+-- Player2: y0, y1, y2, y3, y4, y5, y6
+-- Goal1: x0
+-- Goal2: !y0
 
 
 Agent Environment
@@ -21,50 +21,338 @@ end Agent
 
 Agent Player1
   Vars:
-    x : boolean;
+    x0 : boolean;
+    x1 : boolean;
+    x2 : boolean;
+    x3 : boolean;
+    x4 : boolean;
+    x5 : boolean;
+    x6 : boolean;
   end Vars
-  Actions = {ac0, ac1};
+  Actions = {ac0000000, ac0000001, ac0000010, ac0000011, ac0000100, ac0000101, ac0000110, ac0000111, ac0001000, ac0001001, ac0001010, ac0001011, ac0001100, ac0001101, ac0001110, ac0001111, ac0010000, ac0010001, ac0010010, ac0010011, ac0010100, ac0010101, ac0010110, ac0010111, ac0011000, ac0011001, ac0011010, ac0011011, ac0011100, ac0011101, ac0011110, ac0011111, ac0100000, ac0100001, ac0100010, ac0100011, ac0100100, ac0100101, ac0100110, ac0100111, ac0101000, ac0101001, ac0101010, ac0101011, ac0101100, ac0101101, ac0101110, ac0101111, ac0110000, ac0110001, ac0110010, ac0110011, ac0110100, ac0110101, ac0110110, ac0110111, ac0111000, ac0111001, ac0111010, ac0111011, ac0111100, ac0111101, ac0111110, ac0111111, ac1000000, ac1000001, ac1000010, ac1000011, ac1000100, ac1000101, ac1000110, ac1000111, ac1001000, ac1001001, ac1001010, ac1001011, ac1001100, ac1001101, ac1001110, ac1001111, ac1010000, ac1010001, ac1010010, ac1010011, ac1010100, ac1010101, ac1010110, ac1010111, ac1011000, ac1011001, ac1011010, ac1011011, ac1011100, ac1011101, ac1011110, ac1011111, ac1100000, ac1100001, ac1100010, ac1100011, ac1100100, ac1100101, ac1100110, ac1100111, ac1101000, ac1101001, ac1101010, ac1101011, ac1101100, ac1101101, ac1101110, ac1101111, ac1110000, ac1110001, ac1110010, ac1110011, ac1110100, ac1110101, ac1110110, ac1110111, ac1111000, ac1111001, ac1111010, ac1111011, ac1111100, ac1111101, ac1111110, ac1111111};
   Protocol:
-    Other : {ac0, ac1};
+    Other : {ac0000000, ac0000001, ac0000010, ac0000011, ac0000100, ac0000101, ac0000110, ac0000111, ac0001000, ac0001001, ac0001010, ac0001011, ac0001100, ac0001101, ac0001110, ac0001111, ac0010000, ac0010001, ac0010010, ac0010011, ac0010100, ac0010101, ac0010110, ac0010111, ac0011000, ac0011001, ac0011010, ac0011011, ac0011100, ac0011101, ac0011110, ac0011111, ac0100000, ac0100001, ac0100010, ac0100011, ac0100100, ac0100101, ac0100110, ac0100111, ac0101000, ac0101001, ac0101010, ac0101011, ac0101100, ac0101101, ac0101110, ac0101111, ac0110000, ac0110001, ac0110010, ac0110011, ac0110100, ac0110101, ac0110110, ac0110111, ac0111000, ac0111001, ac0111010, ac0111011, ac0111100, ac0111101, ac0111110, ac0111111, ac1000000, ac1000001, ac1000010, ac1000011, ac1000100, ac1000101, ac1000110, ac1000111, ac1001000, ac1001001, ac1001010, ac1001011, ac1001100, ac1001101, ac1001110, ac1001111, ac1010000, ac1010001, ac1010010, ac1010011, ac1010100, ac1010101, ac1010110, ac1010111, ac1011000, ac1011001, ac1011010, ac1011011, ac1011100, ac1011101, ac1011110, ac1011111, ac1100000, ac1100001, ac1100010, ac1100011, ac1100100, ac1100101, ac1100110, ac1100111, ac1101000, ac1101001, ac1101010, ac1101011, ac1101100, ac1101101, ac1101110, ac1101111, ac1110000, ac1110001, ac1110010, ac1110011, ac1110100, ac1110101, ac1110110, ac1110111, ac1111000, ac1111001, ac1111010, ac1111011, ac1111100, ac1111101, ac1111110, ac1111111};
   end Protocol
   Evolution:
-    (x = false) if Action=ac0;
-    (x = true) if Action=ac1;
+    (x0 = false) and (x1 = false) and (x2 = false) and (x3 = false) and (x4 = false) and (x5 = false) and (x6 = false) if Action=ac0000000;
+    (x0 = false) and (x1 = false) and (x2 = false) and (x3 = false) and (x4 = false) and (x5 = false) and (x6 = true) if Action=ac0000001;
+    (x0 = false) and (x1 = false) and (x2 = false) and (x3 = false) and (x4 = false) and (x5 = true) and (x6 = false) if Action=ac0000010;
+    (x0 = false) and (x1 = false) and (x2 = false) and (x3 = false) and (x4 = false) and (x5 = true) and (x6 = true) if Action=ac0000011;
+    (x0 = false) and (x1 = false) and (x2 = false) and (x3 = false) and (x4 = true) and (x5 = false) and (x6 = false) if Action=ac0000100;
+    (x0 = false) and (x1 = false) and (x2 = false) and (x3 = false) and (x4 = true) and (x5 = false) and (x6 = true) if Action=ac0000101;
+    (x0 = false) and (x1 = false) and (x2 = false) and (x3 = false) and (x4 = true) and (x5 = true) and (x6 = false) if Action=ac0000110;
+    (x0 = false) and (x1 = false) and (x2 = false) and (x3 = false) and (x4 = true) and (x5 = true) and (x6 = true) if Action=ac0000111;
+    (x0 = false) and (x1 = false) and (x2 = false) and (x3 = true) and (x4 = false) and (x5 = false) and (x6 = false) if Action=ac0001000;
+    (x0 = false) and (x1 = false) and (x2 = false) and (x3 = true) and (x4 = false) and (x5 = false) and (x6 = true) if Action=ac0001001;
+    (x0 = false) and (x1 = false) and (x2 = false) and (x3 = true) and (x4 = false) and (x5 = true) and (x6 = false) if Action=ac0001010;
+    (x0 = false) and (x1 = false) and (x2 = false) and (x3 = true) and (x4 = false) and (x5 = true) and (x6 = true) if Action=ac0001011;
+    (x0 = false) and (x1 = false) and (x2 = false) and (x3 = true) and (x4 = true) and (x5 = false) and (x6 = false) if Action=ac0001100;
+    (x0 = false) and (x1 = false) and (x2 = false) and (x3 = true) and (x4 = true) and (x5 = false) and (x6 = true) if Action=ac0001101;
+    (x0 = false) and (x1 = false) and (x2 = false) and (x3 = true) and (x4 = true) and (x5 = true) and (x6 = false) if Action=ac0001110;
+    (x0 = false) and (x1 = false) and (x2 = false) and (x3 = true) and (x4 = true) and (x5 = true) and (x6 = true) if Action=ac0001111;
+    (x0 = false) and (x1 = false) and (x2 = true) and (x3 = false) and (x4 = false) and (x5 = false) and (x6 = false) if Action=ac0010000;
+    (x0 = false) and (x1 = false) and (x2 = true) and (x3 = false) and (x4 = false) and (x5 = false) and (x6 = true) if Action=ac0010001;
+    (x0 = false) and (x1 = false) and (x2 = true) and (x3 = false) and (x4 = false) and (x5 = true) and (x6 = false) if Action=ac0010010;
+    (x0 = false) and (x1 = false) and (x2 = true) and (x3 = false) and (x4 = false) and (x5 = true) and (x6 = true) if Action=ac0010011;
+    (x0 = false) and (x1 = false) and (x2 = true) and (x3 = false) and (x4 = true) and (x5 = false) and (x6 = false) if Action=ac0010100;
+    (x0 = false) and (x1 = false) and (x2 = true) and (x3 = false) and (x4 = true) and (x5 = false) and (x6 = true) if Action=ac0010101;
+    (x0 = false) and (x1 = false) and (x2 = true) and (x3 = false) and (x4 = true) and (x5 = true) and (x6 = false) if Action=ac0010110;
+    (x0 = false) and (x1 = false) and (x2 = true) and (x3 = false) and (x4 = true) and (x5 = true) and (x6 = true) if Action=ac0010111;
+    (x0 = false) and (x1 = false) and (x2 = true) and (x3 = true) and (x4 = false) and (x5 = false) and (x6 = false) if Action=ac0011000;
+    (x0 = false) and (x1 = false) and (x2 = true) and (x3 = true) and (x4 = false) and (x5 = false) and (x6 = true) if Action=ac0011001;
+    (x0 = false) and (x1 = false) and (x2 = true) and (x3 = true) and (x4 = false) and (x5 = true) and (x6 = false) if Action=ac0011010;
+    (x0 = false) and (x1 = false) and (x2 = true) and (x3 = true) and (x4 = false) and (x5 = true) and (x6 = true) if Action=ac0011011;
+    (x0 = false) and (x1 = false) and (x2 = true) and (x3 = true) and (x4 = true) and (x5 = false) and (x6 = false) if Action=ac0011100;
+    (x0 = false) and (x1 = false) and (x2 = true) and (x3 = true) and (x4 = true) and (x5 = false) and (x6 = true) if Action=ac0011101;
+    (x0 = false) and (x1 = false) and (x2 = true) and (x3 = true) and (x4 = true) and (x5 = true) and (x6 = false) if Action=ac0011110;
+    (x0 = false) and (x1 = false) and (x2 = true) and (x3 = true) and (x4 = true) and (x5 = true) and (x6 = true) if Action=ac0011111;
+    (x0 = false) and (x1 = true) and (x2 = false) and (x3 = false) and (x4 = false) and (x5 = false) and (x6 = false) if Action=ac0100000;
+    (x0 = false) and (x1 = true) and (x2 = false) and (x3 = false) and (x4 = false) and (x5 = false) and (x6 = true) if Action=ac0100001;
+    (x0 = false) and (x1 = true) and (x2 = false) and (x3 = false) and (x4 = false) and (x5 = true) and (x6 = false) if Action=ac0100010;
+    (x0 = false) and (x1 = true) and (x2 = false) and (x3 = false) and (x4 = false) and (x5 = true) and (x6 = true) if Action=ac0100011;
+    (x0 = false) and (x1 = true) and (x2 = false) and (x3 = false) and (x4 = true) and (x5 = false) and (x6 = false) if Action=ac0100100;
+    (x0 = false) and (x1 = true) and (x2 = false) and (x3 = false) and (x4 = true) and (x5 = false) and (x6 = true) if Action=ac0100101;
+    (x0 = false) and (x1 = true) and (x2 = false) and (x3 = false) and (x4 = true) and (x5 = true) and (x6 = false) if Action=ac0100110;
+    (x0 = false) and (x1 = true) and (x2 = false) and (x3 = false) and (x4 = true) and (x5 = true) and (x6 = true) if Action=ac0100111;
+    (x0 = false) and (x1 = true) and (x2 = false) and (x3 = true) and (x4 = false) and (x5 = false) and (x6 = false) if Action=ac0101000;
+    (x0 = false) and (x1 = true) and (x2 = false) and (x3 = true) and (x4 = false) and (x5 = false) and (x6 = true) if Action=ac0101001;
+    (x0 = false) and (x1 = true) and (x2 = false) and (x3 = true) and (x4 = false) and (x5 = true) and (x6 = false) if Action=ac0101010;
+    (x0 = false) and (x1 = true) and (x2 = false) and (x3 = true) and (x4 = false) and (x5 = true) and (x6 = true) if Action=ac0101011;
+    (x0 = false) and (x1 = true) and (x2 = false) and (x3 = true) and (x4 = true) and (x5 = false) and (x6 = false) if Action=ac0101100;
+    (x0 = false) and (x1 = true) and (x2 = false) and (x3 = true) and (x4 = true) and (x5 = false) and (x6 = true) if Action=ac0101101;
+    (x0 = false) and (x1 = true) and (x2 = false) and (x3 = true) and (x4 = true) and (x5 = true) and (x6 = false) if Action=ac0101110;
+    (x0 = false) and (x1 = true) and (x2 = false) and (x3 = true) and (x4 = true) and (x5 = true) and (x6 = true) if Action=ac0101111;
+    (x0 = false) and (x1 = true) and (x2 = true) and (x3 = false) and (x4 = false) and (x5 = false) and (x6 = false) if Action=ac0110000;
+    (x0 = false) and (x1 = true) and (x2 = true) and (x3 = false) and (x4 = false) and (x5 = false) and (x6 = true) if Action=ac0110001;
+    (x0 = false) and (x1 = true) and (x2 = true) and (x3 = false) and (x4 = false) and (x5 = true) and (x6 = false) if Action=ac0110010;
+    (x0 = false) and (x1 = true) and (x2 = true) and (x3 = false) and (x4 = false) and (x5 = true) and (x6 = true) if Action=ac0110011;
+    (x0 = false) and (x1 = true) and (x2 = true) and (x3 = false) and (x4 = true) and (x5 = false) and (x6 = false) if Action=ac0110100;
+    (x0 = false) and (x1 = true) and (x2 = true) and (x3 = false) and (x4 = true) and (x5 = false) and (x6 = true) if Action=ac0110101;
+    (x0 = false) and (x1 = true) and (x2 = true) and (x3 = false) and (x4 = true) and (x5 = true) and (x6 = false) if Action=ac0110110;
+    (x0 = false) and (x1 = true) and (x2 = true) and (x3 = false) and (x4 = true) and (x5 = true) and (x6 = true) if Action=ac0110111;
+    (x0 = false) and (x1 = true) and (x2 = true) and (x3 = true) and (x4 = false) and (x5 = false) and (x6 = false) if Action=ac0111000;
+    (x0 = false) and (x1 = true) and (x2 = true) and (x3 = true) and (x4 = false) and (x5 = false) and (x6 = true) if Action=ac0111001;
+    (x0 = false) and (x1 = true) and (x2 = true) and (x3 = true) and (x4 = false) and (x5 = true) and (x6 = false) if Action=ac0111010;
+    (x0 = false) and (x1 = true) and (x2 = true) and (x3 = true) and (x4 = false) and (x5 = true) and (x6 = true) if Action=ac0111011;
+    (x0 = false) and (x1 = true) and (x2 = true) and (x3 = true) and (x4 = true) and (x5 = false) and (x6 = false) if Action=ac0111100;
+    (x0 = false) and (x1 = true) and (x2 = true) and (x3 = true) and (x4 = true) and (x5 = false) and (x6 = true) if Action=ac0111101;
+    (x0 = false) and (x1 = true) and (x2 = true) and (x3 = true) and (x4 = true) and (x5 = true) and (x6 = false) if Action=ac0111110;
+    (x0 = false) and (x1 = true) and (x2 = true) and (x3 = true) and (x4 = true) and (x5 = true) and (x6 = true) if Action=ac0111111;
+    (x0 = true) and (x1 = false) and (x2 = false) and (x3 = false) and (x4 = false) and (x5 = false) and (x6 = false) if Action=ac1000000;
+    (x0 = true) and (x1 = false) and (x2 = false) and (x3 = false) and (x4 = false) and (x5 = false) and (x6 = true) if Action=ac1000001;
+    (x0 = true) and (x1 = false) and (x2 = false) and (x3 = false) and (x4 = false) and (x5 = true) and (x6 = false) if Action=ac1000010;
+    (x0 = true) and (x1 = false) and (x2 = false) and (x3 = false) and (x4 = false) and (x5 = true) and (x6 = true) if Action=ac1000011;
+    (x0 = true) and (x1 = false) and (x2 = false) and (x3 = false) and (x4 = true) and (x5 = false) and (x6 = false) if Action=ac1000100;
+    (x0 = true) and (x1 = false) and (x2 = false) and (x3 = false) and (x4 = true) and (x5 = false) and (x6 = true) if Action=ac1000101;
+    (x0 = true) and (x1 = false) and (x2 = false) and (x3 = false) and (x4 = true) and (x5 = true) and (x6 = false) if Action=ac1000110;
+    (x0 = true) and (x1 = false) and (x2 = false) and (x3 = false) and (x4 = true) and (x5 = true) and (x6 = true) if Action=ac1000111;
+    (x0 = true) and (x1 = false) and (x2 = false) and (x3 = true) and (x4 = false) and (x5 = false) and (x6 = false) if Action=ac1001000;
+    (x0 = true) and (x1 = false) and (x2 = false) and (x3 = true) and (x4 = false) and (x5 = false) and (x6 = true) if Action=ac1001001;
+    (x0 = true) and (x1 = false) and (x2 = false) and (x3 = true) and (x4 = false) and (x5 = true) and (x6 = false) if Action=ac1001010;
+    (x0 = true) and (x1 = false) and (x2 = false) and (x3 = true) and (x4 = false) and (x5 = true) and (x6 = true) if Action=ac1001011;
+    (x0 = true) and (x1 = false) and (x2 = false) and (x3 = true) and (x4 = true) and (x5 = false) and (x6 = false) if Action=ac1001100;
+    (x0 = true) and (x1 = false) and (x2 = false) and (x3 = true) and (x4 = true) and (x5 = false) and (x6 = true) if Action=ac1001101;
+    (x0 = true) and (x1 = false) and (x2 = false) and (x3 = true) and (x4 = true) and (x5 = true) and (x6 = false) if Action=ac1001110;
+    (x0 = true) and (x1 = false) and (x2 = false) and (x3 = true) and (x4 = true) and (x5 = true) and (x6 = true) if Action=ac1001111;
+    (x0 = true) and (x1 = false) and (x2 = true) and (x3 = false) and (x4 = false) and (x5 = false) and (x6 = false) if Action=ac1010000;
+    (x0 = true) and (x1 = false) and (x2 = true) and (x3 = false) and (x4 = false) and (x5 = false) and (x6 = true) if Action=ac1010001;
+    (x0 = true) and (x1 = false) and (x2 = true) and (x3 = false) and (x4 = false) and (x5 = true) and (x6 = false) if Action=ac1010010;
+    (x0 = true) and (x1 = false) and (x2 = true) and (x3 = false) and (x4 = false) and (x5 = true) and (x6 = true) if Action=ac1010011;
+    (x0 = true) and (x1 = false) and (x2 = true) and (x3 = false) and (x4 = true) and (x5 = false) and (x6 = false) if Action=ac1010100;
+    (x0 = true) and (x1 = false) and (x2 = true) and (x3 = false) and (x4 = true) and (x5 = false) and (x6 = true) if Action=ac1010101;
+    (x0 = true) and (x1 = false) and (x2 = true) and (x3 = false) and (x4 = true) and (x5 = true) and (x6 = false) if Action=ac1010110;
+    (x0 = true) and (x1 = false) and (x2 = true) and (x3 = false) and (x4 = true) and (x5 = true) and (x6 = true) if Action=ac1010111;
+    (x0 = true) and (x1 = false) and (x2 = true) and (x3 = true) and (x4 = false) and (x5 = false) and (x6 = false) if Action=ac1011000;
+    (x0 = true) and (x1 = false) and (x2 = true) and (x3 = true) and (x4 = false) and (x5 = false) and (x6 = true) if Action=ac1011001;
+    (x0 = true) and (x1 = false) and (x2 = true) and (x3 = true) and (x4 = false) and (x5 = true) and (x6 = false) if Action=ac1011010;
+    (x0 = true) and (x1 = false) and (x2 = true) and (x3 = true) and (x4 = false) and (x5 = true) and (x6 = true) if Action=ac1011011;
+    (x0 = true) and (x1 = false) and (x2 = true) and (x3 = true) and (x4 = true) and (x5 = false) and (x6 = false) if Action=ac1011100;
+    (x0 = true) and (x1 = false) and (x2 = true) and (x3 = true) and (x4 = true) and (x5 = false) and (x6 = true) if Action=ac1011101;
+    (x0 = true) and (x1 = false) and (x2 = true) and (x3 = true) and (x4 = true) and (x5 = true) and (x6 = false) if Action=ac1011110;
+    (x0 = true) and (x1 = false) and (x2 = true) and (x3 = true) and (x4 = true) and (x5 = true) and (x6 = true) if Action=ac1011111;
+    (x0 = true) and (x1 = true) and (x2 = false) and (x3 = false) and (x4 = false) and (x5 = false) and (x6 = false) if Action=ac1100000;
+    (x0 = true) and (x1 = true) and (x2 = false) and (x3 = false) and (x4 = false) and (x5 = false) and (x6 = true) if Action=ac1100001;
+    (x0 = true) and (x1 = true) and (x2 = false) and (x3 = false) and (x4 = false) and (x5 = true) and (x6 = false) if Action=ac1100010;
+    (x0 = true) and (x1 = true) and (x2 = false) and (x3 = false) and (x4 = false) and (x5 = true) and (x6 = true) if Action=ac1100011;
+    (x0 = true) and (x1 = true) and (x2 = false) and (x3 = false) and (x4 = true) and (x5 = false) and (x6 = false) if Action=ac1100100;
+    (x0 = true) and (x1 = true) and (x2 = false) and (x3 = false) and (x4 = true) and (x5 = false) and (x6 = true) if Action=ac1100101;
+    (x0 = true) and (x1 = true) and (x2 = false) and (x3 = false) and (x4 = true) and (x5 = true) and (x6 = false) if Action=ac1100110;
+    (x0 = true) and (x1 = true) and (x2 = false) and (x3 = false) and (x4 = true) and (x5 = true) and (x6 = true) if Action=ac1100111;
+    (x0 = true) and (x1 = true) and (x2 = false) and (x3 = true) and (x4 = false) and (x5 = false) and (x6 = false) if Action=ac1101000;
+    (x0 = true) and (x1 = true) and (x2 = false) and (x3 = true) and (x4 = false) and (x5 = false) and (x6 = true) if Action=ac1101001;
+    (x0 = true) and (x1 = true) and (x2 = false) and (x3 = true) and (x4 = false) and (x5 = true) and (x6 = false) if Action=ac1101010;
+    (x0 = true) and (x1 = true) and (x2 = false) and (x3 = true) and (x4 = false) and (x5 = true) and (x6 = true) if Action=ac1101011;
+    (x0 = true) and (x1 = true) and (x2 = false) and (x3 = true) and (x4 = true) and (x5 = false) and (x6 = false) if Action=ac1101100;
+    (x0 = true) and (x1 = true) and (x2 = false) and (x3 = true) and (x4 = true) and (x5 = false) and (x6 = true) if Action=ac1101101;
+    (x0 = true) and (x1 = true) and (x2 = false) and (x3 = true) and (x4 = true) and (x5 = true) and (x6 = false) if Action=ac1101110;
+    (x0 = true) and (x1 = true) and (x2 = false) and (x3 = true) and (x4 = true) and (x5 = true) and (x6 = true) if Action=ac1101111;
+    (x0 = true) and (x1 = true) and (x2 = true) and (x3 = false) and (x4 = false) and (x5 = false) and (x6 = false) if Action=ac1110000;
+    (x0 = true) and (x1 = true) and (x2 = true) and (x3 = false) and (x4 = false) and (x5 = false) and (x6 = true) if Action=ac1110001;
+    (x0 = true) and (x1 = true) and (x2 = true) and (x3 = false) and (x4 = false) and (x5 = true) and (x6 = false) if Action=ac1110010;
+    (x0 = true) and (x1 = true) and (x2 = true) and (x3 = false) and (x4 = false) and (x5 = true) and (x6 = true) if Action=ac1110011;
+    (x0 = true) and (x1 = true) and (x2 = true) and (x3 = false) and (x4 = true) and (x5 = false) and (x6 = false) if Action=ac1110100;
+    (x0 = true) and (x1 = true) and (x2 = true) and (x3 = false) and (x4 = true) and (x5 = false) and (x6 = true) if Action=ac1110101;
+    (x0 = true) and (x1 = true) and (x2 = true) and (x3 = false) and (x4 = true) and (x5 = true) and (x6 = false) if Action=ac1110110;
+    (x0 = true) and (x1 = true) and (x2 = true) and (x3 = false) and (x4 = true) and (x5 = true) and (x6 = true) if Action=ac1110111;
+    (x0 = true) and (x1 = true) and (x2 = true) and (x3 = true) and (x4 = false) and (x5 = false) and (x6 = false) if Action=ac1111000;
+    (x0 = true) and (x1 = true) and (x2 = true) and (x3 = true) and (x4 = false) and (x5 = false) and (x6 = true) if Action=ac1111001;
+    (x0 = true) and (x1 = true) and (x2 = true) and (x3 = true) and (x4 = false) and (x5 = true) and (x6 = false) if Action=ac1111010;
+    (x0 = true) and (x1 = true) and (x2 = true) and (x3 = true) and (x4 = false) and (x5 = true) and (x6 = true) if Action=ac1111011;
+    (x0 = true) and (x1 = true) and (x2 = true) and (x3 = true) and (x4 = true) and (x5 = false) and (x6 = false) if Action=ac1111100;
+    (x0 = true) and (x1 = true) and (x2 = true) and (x3 = true) and (x4 = true) and (x5 = false) and (x6 = true) if Action=ac1111101;
+    (x0 = true) and (x1 = true) and (x2 = true) and (x3 = true) and (x4 = true) and (x5 = true) and (x6 = false) if Action=ac1111110;
+    (x0 = true) and (x1 = true) and (x2 = true) and (x3 = true) and (x4 = true) and (x5 = true) and (x6 = true) if Action=ac1111111;
   end Evolution
 end Agent
 
 
 Agent Player2
   Vars:
-    y : boolean;
+    y0 : boolean;
+    y1 : boolean;
+    y2 : boolean;
+    y3 : boolean;
+    y4 : boolean;
+    y5 : boolean;
+    y6 : boolean;
   end Vars
-  Actions = {ac0, ac1};
+  Actions = {ac0000000, ac0000001, ac0000010, ac0000011, ac0000100, ac0000101, ac0000110, ac0000111, ac0001000, ac0001001, ac0001010, ac0001011, ac0001100, ac0001101, ac0001110, ac0001111, ac0010000, ac0010001, ac0010010, ac0010011, ac0010100, ac0010101, ac0010110, ac0010111, ac0011000, ac0011001, ac0011010, ac0011011, ac0011100, ac0011101, ac0011110, ac0011111, ac0100000, ac0100001, ac0100010, ac0100011, ac0100100, ac0100101, ac0100110, ac0100111, ac0101000, ac0101001, ac0101010, ac0101011, ac0101100, ac0101101, ac0101110, ac0101111, ac0110000, ac0110001, ac0110010, ac0110011, ac0110100, ac0110101, ac0110110, ac0110111, ac0111000, ac0111001, ac0111010, ac0111011, ac0111100, ac0111101, ac0111110, ac0111111, ac1000000, ac1000001, ac1000010, ac1000011, ac1000100, ac1000101, ac1000110, ac1000111, ac1001000, ac1001001, ac1001010, ac1001011, ac1001100, ac1001101, ac1001110, ac1001111, ac1010000, ac1010001, ac1010010, ac1010011, ac1010100, ac1010101, ac1010110, ac1010111, ac1011000, ac1011001, ac1011010, ac1011011, ac1011100, ac1011101, ac1011110, ac1011111, ac1100000, ac1100001, ac1100010, ac1100011, ac1100100, ac1100101, ac1100110, ac1100111, ac1101000, ac1101001, ac1101010, ac1101011, ac1101100, ac1101101, ac1101110, ac1101111, ac1110000, ac1110001, ac1110010, ac1110011, ac1110100, ac1110101, ac1110110, ac1110111, ac1111000, ac1111001, ac1111010, ac1111011, ac1111100, ac1111101, ac1111110, ac1111111};
   Protocol:
-    Other : {ac0, ac1};
+    Other : {ac0000000, ac0000001, ac0000010, ac0000011, ac0000100, ac0000101, ac0000110, ac0000111, ac0001000, ac0001001, ac0001010, ac0001011, ac0001100, ac0001101, ac0001110, ac0001111, ac0010000, ac0010001, ac0010010, ac0010011, ac0010100, ac0010101, ac0010110, ac0010111, ac0011000, ac0011001, ac0011010, ac0011011, ac0011100, ac0011101, ac0011110, ac0011111, ac0100000, ac0100001, ac0100010, ac0100011, ac0100100, ac0100101, ac0100110, ac0100111, ac0101000, ac0101001, ac0101010, ac0101011, ac0101100, ac0101101, ac0101110, ac0101111, ac0110000, ac0110001, ac0110010, ac0110011, ac0110100, ac0110101, ac0110110, ac0110111, ac0111000, ac0111001, ac0111010, ac0111011, ac0111100, ac0111101, ac0111110, ac0111111, ac1000000, ac1000001, ac1000010, ac1000011, ac1000100, ac1000101, ac1000110, ac1000111, ac1001000, ac1001001, ac1001010, ac1001011, ac1001100, ac1001101, ac1001110, ac1001111, ac1010000, ac1010001, ac1010010, ac1010011, ac1010100, ac1010101, ac1010110, ac1010111, ac1011000, ac1011001, ac1011010, ac1011011, ac1011100, ac1011101, ac1011110, ac1011111, ac1100000, ac1100001, ac1100010, ac1100011, ac1100100, ac1100101, ac1100110, ac1100111, ac1101000, ac1101001, ac1101010, ac1101011, ac1101100, ac1101101, ac1101110, ac1101111, ac1110000, ac1110001, ac1110010, ac1110011, ac1110100, ac1110101, ac1110110, ac1110111, ac1111000, ac1111001, ac1111010, ac1111011, ac1111100, ac1111101, ac1111110, ac1111111};
   end Protocol
   Evolution:
-    (y = false) if Action=ac0;
-    (y = true) if Action=ac1;
+    (y0 = false) and (y1 = false) and (y2 = false) and (y3 = false) and (y4 = false) and (y5 = false) and (y6 = false) if Action=ac0000000;
+    (y0 = false) and (y1 = false) and (y2 = false) and (y3 = false) and (y4 = false) and (y5 = false) and (y6 = true) if Action=ac0000001;
+    (y0 = false) and (y1 = false) and (y2 = false) and (y3 = false) and (y4 = false) and (y5 = true) and (y6 = false) if Action=ac0000010;
+    (y0 = false) and (y1 = false) and (y2 = false) and (y3 = false) and (y4 = false) and (y5 = true) and (y6 = true) if Action=ac0000011;
+    (y0 = false) and (y1 = false) and (y2 = false) and (y3 = false) and (y4 = true) and (y5 = false) and (y6 = false) if Action=ac0000100;
+    (y0 = false) and (y1 = false) and (y2 = false) and (y3 = false) and (y4 = true) and (y5 = false) and (y6 = true) if Action=ac0000101;
+    (y0 = false) and (y1 = false) and (y2 = false) and (y3 = false) and (y4 = true) and (y5 = true) and (y6 = false) if Action=ac0000110;
+    (y0 = false) and (y1 = false) and (y2 = false) and (y3 = false) and (y4 = true) and (y5 = true) and (y6 = true) if Action=ac0000111;
+    (y0 = false) and (y1 = false) and (y2 = false) and (y3 = true) and (y4 = false) and (y5 = false) and (y6 = false) if Action=ac0001000;
+    (y0 = false) and (y1 = false) and (y2 = false) and (y3 = true) and (y4 = false) and (y5 = false) and (y6 = true) if Action=ac0001001;
+    (y0 = false) and (y1 = false) and (y2 = false) and (y3 = true) and (y4 = false) and (y5 = true) and (y6 = false) if Action=ac0001010;
+    (y0 = false) and (y1 = false) and (y2 = false) and (y3 = true) and (y4 = false) and (y5 = true) and (y6 = true) if Action=ac0001011;
+    (y0 = false) and (y1 = false) and (y2 = false) and (y3 = true) and (y4 = true) and (y5 = false) and (y6 = false) if Action=ac0001100;
+    (y0 = false) and (y1 = false) and (y2 = false) and (y3 = true) and (y4 = true) and (y5 = false) and (y6 = true) if Action=ac0001101;
+    (y0 = false) and (y1 = false) and (y2 = false) and (y3 = true) and (y4 = true) and (y5 = true) and (y6 = false) if Action=ac0001110;
+    (y0 = false) and (y1 = false) and (y2 = false) and (y3 = true) and (y4 = true) and (y5 = true) and (y6 = true) if Action=ac0001111;
+    (y0 = false) and (y1 = false) and (y2 = true) and (y3 = false) and (y4 = false) and (y5 = false) and (y6 = false) if Action=ac0010000;
+    (y0 = false) and (y1 = false) and (y2 = true) and (y3 = false) and (y4 = false) and (y5 = false) and (y6 = true) if Action=ac0010001;
+    (y0 = false) and (y1 = false) and (y2 = true) and (y3 = false) and (y4 = false) and (y5 = true) and (y6 = false) if Action=ac0010010;
+    (y0 = false) and (y1 = false) and (y2 = true) and (y3 = false) and (y4 = false) and (y5 = true) and (y6 = true) if Action=ac0010011;
+    (y0 = false) and (y1 = false) and (y2 = true) and (y3 = false) and (y4 = true) and (y5 = false) and (y6 = false) if Action=ac0010100;
+    (y0 = false) and (y1 = false) and (y2 = true) and (y3 = false) and (y4 = true) and (y5 = false) and (y6 = true) if Action=ac0010101;
+    (y0 = false) and (y1 = false) and (y2 = true) and (y3 = false) and (y4 = true) and (y5 = true) and (y6 = false) if Action=ac0010110;
+    (y0 = false) and (y1 = false) and (y2 = true) and (y3 = false) and (y4 = true) and (y5 = true) and (y6 = true) if Action=ac0010111;
+    (y0 = false) and (y1 = false) and (y2 = true) and (y3 = true) and (y4 = false) and (y5 = false) and (y6 = false) if Action=ac0011000;
+    (y0 = false) and (y1 = false) and (y2 = true) and (y3 = true) and (y4 = false) and (y5 = false) and (y6 = true) if Action=ac0011001;
+    (y0 = false) and (y1 = false) and (y2 = true) and (y3 = true) and (y4 = false) and (y5 = true) and (y6 = false) if Action=ac0011010;
+    (y0 = false) and (y1 = false) and (y2 = true) and (y3 = true) and (y4 = false) and (y5 = true) and (y6 = true) if Action=ac0011011;
+    (y0 = false) and (y1 = false) and (y2 = true) and (y3 = true) and (y4 = true) and (y5 = false) and (y6 = false) if Action=ac0011100;
+    (y0 = false) and (y1 = false) and (y2 = true) and (y3 = true) and (y4 = true) and (y5 = false) and (y6 = true) if Action=ac0011101;
+    (y0 = false) and (y1 = false) and (y2 = true) and (y3 = true) and (y4 = true) and (y5 = true) and (y6 = false) if Action=ac0011110;
+    (y0 = false) and (y1 = false) and (y2 = true) and (y3 = true) and (y4 = true) and (y5 = true) and (y6 = true) if Action=ac0011111;
+    (y0 = false) and (y1 = true) and (y2 = false) and (y3 = false) and (y4 = false) and (y5 = false) and (y6 = false) if Action=ac0100000;
+    (y0 = false) and (y1 = true) and (y2 = false) and (y3 = false) and (y4 = false) and (y5 = false) and (y6 = true) if Action=ac0100001;
+    (y0 = false) and (y1 = true) and (y2 = false) and (y3 = false) and (y4 = false) and (y5 = true) and (y6 = false) if Action=ac0100010;
+    (y0 = false) and (y1 = true) and (y2 = false) and (y3 = false) and (y4 = false) and (y5 = true) and (y6 = true) if Action=ac0100011;
+    (y0 = false) and (y1 = true) and (y2 = false) and (y3 = false) and (y4 = true) and (y5 = false) and (y6 = false) if Action=ac0100100;
+    (y0 = false) and (y1 = true) and (y2 = false) and (y3 = false) and (y4 = true) and (y5 = false) and (y6 = true) if Action=ac0100101;
+    (y0 = false) and (y1 = true) and (y2 = false) and (y3 = false) and (y4 = true) and (y5 = true) and (y6 = false) if Action=ac0100110;
+    (y0 = false) and (y1 = true) and (y2 = false) and (y3 = false) and (y4 = true) and (y5 = true) and (y6 = true) if Action=ac0100111;
+    (y0 = false) and (y1 = true) and (y2 = false) and (y3 = true) and (y4 = false) and (y5 = false) and (y6 = false) if Action=ac0101000;
+    (y0 = false) and (y1 = true) and (y2 = false) and (y3 = true) and (y4 = false) and (y5 = false) and (y6 = true) if Action=ac0101001;
+    (y0 = false) and (y1 = true) and (y2 = false) and (y3 = true) and (y4 = false) and (y5 = true) and (y6 = false) if Action=ac0101010;
+    (y0 = false) and (y1 = true) and (y2 = false) and (y3 = true) and (y4 = false) and (y5 = true) and (y6 = true) if Action=ac0101011;
+    (y0 = false) and (y1 = true) and (y2 = false) and (y3 = true) and (y4 = true) and (y5 = false) and (y6 = false) if Action=ac0101100;
+    (y0 = false) and (y1 = true) and (y2 = false) and (y3 = true) and (y4 = true) and (y5 = false) and (y6 = true) if Action=ac0101101;
+    (y0 = false) and (y1 = true) and (y2 = false) and (y3 = true) and (y4 = true) and (y5 = true) and (y6 = false) if Action=ac0101110;
+    (y0 = false) and (y1 = true) and (y2 = false) and (y3 = true) and (y4 = true) and (y5 = true) and (y6 = true) if Action=ac0101111;
+    (y0 = false) and (y1 = true) and (y2 = true) and (y3 = false) and (y4 = false) and (y5 = false) and (y6 = false) if Action=ac0110000;
+    (y0 = false) and (y1 = true) and (y2 = true) and (y3 = false) and (y4 = false) and (y5 = false) and (y6 = true) if Action=ac0110001;
+    (y0 = false) and (y1 = true) and (y2 = true) and (y3 = false) and (y4 = false) and (y5 = true) and (y6 = false) if Action=ac0110010;
+    (y0 = false) and (y1 = true) and (y2 = true) and (y3 = false) and (y4 = false) and (y5 = true) and (y6 = true) if Action=ac0110011;
+    (y0 = false) and (y1 = true) and (y2 = true) and (y3 = false) and (y4 = true) and (y5 = false) and (y6 = false) if Action=ac0110100;
+    (y0 = false) and (y1 = true) and (y2 = true) and (y3 = false) and (y4 = true) and (y5 = false) and (y6 = true) if Action=ac0110101;
+    (y0 = false) and (y1 = true) and (y2 = true) and (y3 = false) and (y4 = true) and (y5 = true) and (y6 = false) if Action=ac0110110;
+    (y0 = false) and (y1 = true) and (y2 = true) and (y3 = false) and (y4 = true) and (y5 = true) and (y6 = true) if Action=ac0110111;
+    (y0 = false) and (y1 = true) and (y2 = true) and (y3 = true) and (y4 = false) and (y5 = false) and (y6 = false) if Action=ac0111000;
+    (y0 = false) and (y1 = true) and (y2 = true) and (y3 = true) and (y4 = false) and (y5 = false) and (y6 = true) if Action=ac0111001;
+    (y0 = false) and (y1 = true) and (y2 = true) and (y3 = true) and (y4 = false) and (y5 = true) and (y6 = false) if Action=ac0111010;
+    (y0 = false) and (y1 = true) and (y2 = true) and (y3 = true) and (y4 = false) and (y5 = true) and (y6 = true) if Action=ac0111011;
+    (y0 = false) and (y1 = true) and (y2 = true) and (y3 = true) and (y4 = true) and (y5 = false) and (y6 = false) if Action=ac0111100;
+    (y0 = false) and (y1 = true) and (y2 = true) and (y3 = true) and (y4 = true) and (y5 = false) and (y6 = true) if Action=ac0111101;
+    (y0 = false) and (y1 = true) and (y2 = true) and (y3 = true) and (y4 = true) and (y5 = true) and (y6 = false) if Action=ac0111110;
+    (y0 = false) and (y1 = true) and (y2 = true) and (y3 = true) and (y4 = true) and (y5 = true) and (y6 = true) if Action=ac0111111;
+    (y0 = true) and (y1 = false) and (y2 = false) and (y3 = false) and (y4 = false) and (y5 = false) and (y6 = false) if Action=ac1000000;
+    (y0 = true) and (y1 = false) and (y2 = false) and (y3 = false) and (y4 = false) and (y5 = false) and (y6 = true) if Action=ac1000001;
+    (y0 = true) and (y1 = false) and (y2 = false) and (y3 = false) and (y4 = false) and (y5 = true) and (y6 = false) if Action=ac1000010;
+    (y0 = true) and (y1 = false) and (y2 = false) and (y3 = false) and (y4 = false) and (y5 = true) and (y6 = true) if Action=ac1000011;
+    (y0 = true) and (y1 = false) and (y2 = false) and (y3 = false) and (y4 = true) and (y5 = false) and (y6 = false) if Action=ac1000100;
+    (y0 = true) and (y1 = false) and (y2 = false) and (y3 = false) and (y4 = true) and (y5 = false) and (y6 = true) if Action=ac1000101;
+    (y0 = true) and (y1 = false) and (y2 = false) and (y3 = false) and (y4 = true) and (y5 = true) and (y6 = false) if Action=ac1000110;
+    (y0 = true) and (y1 = false) and (y2 = false) and (y3 = false) and (y4 = true) and (y5 = true) and (y6 = true) if Action=ac1000111;
+    (y0 = true) and (y1 = false) and (y2 = false) and (y3 = true) and (y4 = false) and (y5 = false) and (y6 = false) if Action=ac1001000;
+    (y0 = true) and (y1 = false) and (y2 = false) and (y3 = true) and (y4 = false) and (y5 = false) and (y6 = true) if Action=ac1001001;
+    (y0 = true) and (y1 = false) and (y2 = false) and (y3 = true) and (y4 = false) and (y5 = true) and (y6 = false) if Action=ac1001010;
+    (y0 = true) and (y1 = false) and (y2 = false) and (y3 = true) and (y4 = false) and (y5 = true) and (y6 = true) if Action=ac1001011;
+    (y0 = true) and (y1 = false) and (y2 = false) and (y3 = true) and (y4 = true) and (y5 = false) and (y6 = false) if Action=ac1001100;
+    (y0 = true) and (y1 = false) and (y2 = false) and (y3 = true) and (y4 = true) and (y5 = false) and (y6 = true) if Action=ac1001101;
+    (y0 = true) and (y1 = false) and (y2 = false) and (y3 = true) and (y4 = true) and (y5 = true) and (y6 = false) if Action=ac1001110;
+    (y0 = true) and (y1 = false) and (y2 = false) and (y3 = true) and (y4 = true) and (y5 = true) and (y6 = true) if Action=ac1001111;
+    (y0 = true) and (y1 = false) and (y2 = true) and (y3 = false) and (y4 = false) and (y5 = false) and (y6 = false) if Action=ac1010000;
+    (y0 = true) and (y1 = false) and (y2 = true) and (y3 = false) and (y4 = false) and (y5 = false) and (y6 = true) if Action=ac1010001;
+    (y0 = true) and (y1 = false) and (y2 = true) and (y3 = false) and (y4 = false) and (y5 = true) and (y6 = false) if Action=ac1010010;
+    (y0 = true) and (y1 = false) and (y2 = true) and (y3 = false) and (y4 = false) and (y5 = true) and (y6 = true) if Action=ac1010011;
+    (y0 = true) and (y1 = false) and (y2 = true) and (y3 = false) and (y4 = true) and (y5 = false) and (y6 = false) if Action=ac1010100;
+    (y0 = true) and (y1 = false) and (y2 = true) and (y3 = false) and (y4 = true) and (y5 = false) and (y6 = true) if Action=ac1010101;
+    (y0 = true) and (y1 = false) and (y2 = true) and (y3 = false) and (y4 = true) and (y5 = true) and (y6 = false) if Action=ac1010110;
+    (y0 = true) and (y1 = false) and (y2 = true) and (y3 = false) and (y4 = true) and (y5 = true) and (y6 = true) if Action=ac1010111;
+    (y0 = true) and (y1 = false) and (y2 = true) and (y3 = true) and (y4 = false) and (y5 = false) and (y6 = false) if Action=ac1011000;
+    (y0 = true) and (y1 = false) and (y2 = true) and (y3 = true) and (y4 = false) and (y5 = false) and (y6 = true) if Action=ac1011001;
+    (y0 = true) and (y1 = false) and (y2 = true) and (y3 = true) and (y4 = false) and (y5 = true) and (y6 = false) if Action=ac1011010;
+    (y0 = true) and (y1 = false) and (y2 = true) and (y3 = true) and (y4 = false) and (y5 = true) and (y6 = true) if Action=ac1011011;
+    (y0 = true) and (y1 = false) and (y2 = true) and (y3 = true) and (y4 = true) and (y5 = false) and (y6 = false) if Action=ac1011100;
+    (y0 = true) and (y1 = false) and (y2 = true) and (y3 = true) and (y4 = true) and (y5 = false) and (y6 = true) if Action=ac1011101;
+    (y0 = true) and (y1 = false) and (y2 = true) and (y3 = true) and (y4 = true) and (y5 = true) and (y6 = false) if Action=ac1011110;
+    (y0 = true) and (y1 = false) and (y2 = true) and (y3 = true) and (y4 = true) and (y5 = true) and (y6 = true) if Action=ac1011111;
+    (y0 = true) and (y1 = true) and (y2 = false) and (y3 = false) and (y4 = false) and (y5 = false) and (y6 = false) if Action=ac1100000;
+    (y0 = true) and (y1 = true) and (y2 = false) and (y3 = false) and (y4 = false) and (y5 = false) and (y6 = true) if Action=ac1100001;
+    (y0 = true) and (y1 = true) and (y2 = false) and (y3 = false) and (y4 = false) and (y5 = true) and (y6 = false) if Action=ac1100010;
+    (y0 = true) and (y1 = true) and (y2 = false) and (y3 = false) and (y4 = false) and (y5 = true) and (y6 = true) if Action=ac1100011;
+    (y0 = true) and (y1 = true) and (y2 = false) and (y3 = false) and (y4 = true) and (y5 = false) and (y6 = false) if Action=ac1100100;
+    (y0 = true) and (y1 = true) and (y2 = false) and (y3 = false) and (y4 = true) and (y5 = false) and (y6 = true) if Action=ac1100101;
+    (y0 = true) and (y1 = true) and (y2 = false) and (y3 = false) and (y4 = true) and (y5 = true) and (y6 = false) if Action=ac1100110;
+    (y0 = true) and (y1 = true) and (y2 = false) and (y3 = false) and (y4 = true) and (y5 = true) and (y6 = true) if Action=ac1100111;
+    (y0 = true) and (y1 = true) and (y2 = false) and (y3 = true) and (y4 = false) and (y5 = false) and (y6 = false) if Action=ac1101000;
+    (y0 = true) and (y1 = true) and (y2 = false) and (y3 = true) and (y4 = false) and (y5 = false) and (y6 = true) if Action=ac1101001;
+    (y0 = true) and (y1 = true) and (y2 = false) and (y3 = true) and (y4 = false) and (y5 = true) and (y6 = false) if Action=ac1101010;
+    (y0 = true) and (y1 = true) and (y2 = false) and (y3 = true) and (y4 = false) and (y5 = true) and (y6 = true) if Action=ac1101011;
+    (y0 = true) and (y1 = true) and (y2 = false) and (y3 = true) and (y4 = true) and (y5 = false) and (y6 = false) if Action=ac1101100;
+    (y0 = true) and (y1 = true) and (y2 = false) and (y3 = true) and (y4 = true) and (y5 = false) and (y6 = true) if Action=ac1101101;
+    (y0 = true) and (y1 = true) and (y2 = false) and (y3 = true) and (y4 = true) and (y5 = true) and (y6 = false) if Action=ac1101110;
+    (y0 = true) and (y1 = true) and (y2 = false) and (y3 = true) and (y4 = true) and (y5 = true) and (y6 = true) if Action=ac1101111;
+    (y0 = true) and (y1 = true) and (y2 = true) and (y3 = false) and (y4 = false) and (y5 = false) and (y6 = false) if Action=ac1110000;
+    (y0 = true) and (y1 = true) and (y2 = true) and (y3 = false) and (y4 = false) and (y5 = false) and (y6 = true) if Action=ac1110001;
+    (y0 = true) and (y1 = true) and (y2 = true) and (y3 = false) and (y4 = false) and (y5 = true) and (y6 = false) if Action=ac1110010;
+    (y0 = true) and (y1 = true) and (y2 = true) and (y3 = false) and (y4 = false) and (y5 = true) and (y6 = true) if Action=ac1110011;
+    (y0 = true) and (y1 = true) and (y2 = true) and (y3 = false) and (y4 = true) and (y5 = false) and (y6 = false) if Action=ac1110100;
+    (y0 = true) and (y1 = true) and (y2 = true) and (y3 = false) and (y4 = true) and (y5 = false) and (y6 = true) if Action=ac1110101;
+    (y0 = true) and (y1 = true) and (y2 = true) and (y3 = false) and (y4 = true) and (y5 = true) and (y6 = false) if Action=ac1110110;
+    (y0 = true) and (y1 = true) and (y2 = true) and (y3 = false) and (y4 = true) and (y5 = true) and (y6 = true) if Action=ac1110111;
+    (y0 = true) and (y1 = true) and (y2 = true) and (y3 = true) and (y4 = false) and (y5 = false) and (y6 = false) if Action=ac1111000;
+    (y0 = true) and (y1 = true) and (y2 = true) and (y3 = true) and (y4 = false) and (y5 = false) and (y6 = true) if Action=ac1111001;
+    (y0 = true) and (y1 = true) and (y2 = true) and (y3 = true) and (y4 = false) and (y5 = true) and (y6 = false) if Action=ac1111010;
+    (y0 = true) and (y1 = true) and (y2 = true) and (y3 = true) and (y4 = false) and (y5 = true) and (y6 = true) if Action=ac1111011;
+    (y0 = true) and (y1 = true) and (y2 = true) and (y3 = true) and (y4 = true) and (y5 = false) and (y6 = false) if Action=ac1111100;
+    (y0 = true) and (y1 = true) and (y2 = true) and (y3 = true) and (y4 = true) and (y5 = false) and (y6 = true) if Action=ac1111101;
+    (y0 = true) and (y1 = true) and (y2 = true) and (y3 = true) and (y4 = true) and (y5 = true) and (y6 = false) if Action=ac1111110;
+    (y0 = true) and (y1 = true) and (y2 = true) and (y3 = true) and (y4 = true) and (y5 = true) and (y6 = true) if Action=ac1111111;
   end Evolution
 end Agent
 
 
 Evaluation
-  x if Player1.x = true;
-  y if Player2.y = true;
+  x0 if Player1.x0 = true;
+  x1 if Player1.x1 = true;
+  x2 if Player1.x2 = true;
+  x3 if Player1.x3 = true;
+  x4 if Player1.x4 = true;
+  x5 if Player1.x5 = true;
+  x6 if Player1.x6 = true;
+  y0 if Player2.y0 = true;
+  y1 if Player2.y1 = true;
+  y2 if Player2.y2 = true;
+  y3 if Player2.y3 = true;
+  y4 if Player2.y4 = true;
+  y5 if Player2.y5 = true;
+  y6 if Player2.y6 = true;
 end Evaluation
 
 
 InitStates
   (Environment.dummy = true) and
-  ((Player1.x = true) or (Player1.x = false)) and
-  ((Player2.y = true) or (Player2.y = false));
+  ((Player1.x0 = true) or (Player1.x0 = false)) and
+  ((Player1.x1 = true) or (Player1.x1 = false)) and
+  ((Player1.x2 = true) or (Player1.x2 = false)) and
+  ((Player1.x3 = true) or (Player1.x3 = false)) and
+  ((Player1.x4 = true) or (Player1.x4 = false)) and
+  ((Player1.x5 = true) or (Player1.x5 = false)) and
+  ((Player1.x6 = true) or (Player1.x6 = false)) and
+  ((Player2.y0 = true) or (Player2.y0 = false)) and
+  ((Player2.y1 = true) or (Player2.y1 = false)) and
+  ((Player2.y2 = true) or (Player2.y2 = false)) and
+  ((Player2.y3 = true) or (Player2.y3 = false)) and
+  ((Player2.y4 = true) or (Player2.y4 = false)) and
+  ((Player2.y5 = true) or (Player2.y5 = false)) and
+  ((Player2.y6 = true) or (Player2.y6 = false));
 end InitStates
 
 
 Formulae
   -- LTL SAT
   <<strategy_env>> (Environment,strategy_env) (
-    ( <<strategy_p1>> (Player1, strategy_p1) <<strategy_p2>> (Player2, strategy_p2)  X ( (x ) and (!y) ) )
+    ( <<strategy_p1>> (Player1, strategy_p1) <<strategy_p2>> (Player2, strategy_p2)  X ( (x0) and (!y0) ) )
   );
 end Formulae

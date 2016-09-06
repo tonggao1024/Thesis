@@ -1,7 +1,7 @@
 ### User Input File ###
 
-Player1: x
-Player2: y
-Goal1: x 
-Goal2: !y
-Explore: WHICH
+Player1: x1;x2;x3
+Player2: y1;y2;y3;y4;y5;y6;y7;y8;y9
+Goal1: x1
+Goal2: !y1
+Explore: ALL
